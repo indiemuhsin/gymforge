@@ -6,6 +6,24 @@ A production-quality one-page landing page for a B2B gym equipment wholesale ret
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38B2AC?style=flat-square&logo=tailwindcss)
 
+## 📸 Preview
+
+### Desktop
+
+![Hero Section](docs/screenshots/hero-desktop.jpg)
+
+![Product Categories](docs/screenshots/categories-desktop.png)
+
+![Why Choose Us](docs/screenshots/features-desktop.png)
+
+![Contact Section](docs/screenshots/contact-desktop.png)
+
+### Mobile
+
+<p align="center">
+  <img src="docs/screenshots/hero-mobile.jpg" alt="Mobile View" width="375">
+</p>
+
 ## Tech Stack
 
 - **Framework:** Next.js 15 (App Router, static export)
