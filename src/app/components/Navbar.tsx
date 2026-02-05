@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X, Dumbbell } from "lucide-react";
+import { Menu, X, Dumbbell, Phone } from "lucide-react";
 
 const navLinks = [
   { label: "Products", href: "#products" },
@@ -30,7 +30,7 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Nav */}
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-8 lg:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
@@ -43,18 +43,40 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Desktop CTA */}
-        <a
-          href="#contact"
-          className="hidden cursor-pointer rounded-lg bg-cta px-6 py-2.5 font-semibold text-white transition-all duration-200 hover:bg-cta-hover hover:-translate-y-0.5 md:inline-block"
-        >
-          Get a Quote
-        </a>
+        {/* Desktop Phone + CTA */}
+        <div className="hidden items-center gap-6 lg:flex">
+          {/* Phone number */}
+          <a
+            href="tel:+1-800-555-0199"
+            className="flex items-center gap-2 text-text-muted transition-colors duration-200 hover:text-primary"
+          >
+            <Phone className="h-4 w-4" />
+            <span className="font-medium">1-800-555-0199</span>
+          </a>
+          
+          {/* CTA Button */}
+          <a
+            href="#contact"
+            className="cursor-pointer rounded-lg bg-cta px-6 py-2.5 font-semibold text-white transition-all duration-200 hover:bg-cta-hover hover:-translate-y-0.5"
+          >
+            Get a Quote
+          </a>
+        </div>
+
+        {/* Tablet Nav (md screens) */}
+        <div className="hidden md:flex lg:hidden items-center gap-4">
+          <a
+            href="#contact"
+            className="cursor-pointer rounded-lg bg-cta px-6 py-2.5 font-semibold text-white transition-all duration-200 hover:bg-cta-hover"
+          >
+            Get a Quote
+          </a>
+        </div>
 
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="cursor-pointer text-text md:hidden"
+          className="cursor-pointer text-text lg:hidden"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
         >
@@ -64,7 +86,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="border-t border-border bg-surface md:hidden">
+        <div className="border-t border-border bg-surface lg:hidden">
           <ul className="flex flex-col gap-1 px-4 py-4">
             {navLinks.map((link) => (
               <li key={link.href}>
@@ -77,6 +99,17 @@ export default function Navbar() {
                 </a>
               </li>
             ))}
+            {/* Phone in mobile menu */}
+            <li>
+              <a
+                href="tel:+1-800-555-0199"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center gap-2 px-4 py-3 font-medium text-text-muted transition-colors duration-200 hover:bg-background hover:text-primary"
+              >
+                <Phone className="h-4 w-4" />
+                <span>1-800-555-0199</span>
+              </a>
+            </li>
             <li className="mt-2">
               <a
                 href="#contact"

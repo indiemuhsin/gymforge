@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   Dumbbell,
   HeartPulse,
@@ -12,6 +13,7 @@ interface Category {
   icon: LucideIcon;
   title: string;
   description: string;
+  image: string;
 }
 
 const categories: Category[] = [
@@ -20,36 +22,42 @@ const categories: Category[] = [
     title: "Strength Equipment",
     description:
       "Smith machines, cable stations, leg presses, and complete multi-gym systems built for heavy commercial use.",
+    image: "/images/categories/strength.jpg",
   },
   {
     icon: HeartPulse,
     title: "Cardio Machines",
     description:
       "Treadmills, ellipticals, rowers, and exercise bikes from industry-leading manufacturers with commercial warranties.",
+    image: "/images/categories/cardio.jpg",
   },
   {
     icon: Weight,
     title: "Free Weights",
     description:
       "Dumbbells, barbells, kettlebells, and weight plates in rubber-coated and competition-grade options.",
+    image: "/images/categories/weights.jpg",
   },
   {
     icon: Columns3,
     title: "Benches & Racks",
     description:
       "Adjustable benches, power racks, squat racks, and storage systems designed for high-traffic environments.",
+    image: "/images/categories/benches.jpg",
   },
   {
     icon: Target,
     title: "Functional Training",
     description:
       "Battle ropes, plyometric boxes, resistance bands, TRX systems, and functional training rigs.",
+    image: "/images/categories/functional.jpg",
   },
   {
     icon: Wrench,
     title: "Accessories",
     description:
       "Flooring, mirrors, foam rollers, gym mats, chalk, and everything else to complete your facility.",
+    image: "/images/categories/accessories.jpg",
   },
 ];
 
@@ -81,37 +89,50 @@ export default function Categories() {
             return (
               <article
                 key={category.title}
-                className="group cursor-pointer rounded-xl border border-border bg-background p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg"
+                className="group cursor-pointer overflow-hidden rounded-xl border border-border bg-background transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg"
               >
-                {/* Icon */}
-                <div className="mb-5 inline-flex rounded-lg bg-primary/10 p-3 transition-colors duration-300 group-hover:bg-primary/20">
-                  <Icon className="h-7 w-7 text-primary" />
+                {/* Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src={category.image}
+                    alt={category.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+                  {/* Icon overlay */}
+                  <div className="absolute bottom-4 left-4 inline-flex rounded-lg bg-primary/90 p-3 shadow-lg backdrop-blur-sm">
+                    <Icon className="h-6 w-6 text-white" />
+                  </div>
                 </div>
 
                 {/* Content */}
-                <h3 className="font-heading text-xl font-bold text-text">
-                  {category.title}
-                </h3>
-                <p className="mt-2 leading-relaxed text-text-muted">
-                  {category.description}
-                </p>
+                <div className="p-6">
+                  <h3 className="font-heading text-xl font-bold text-text">
+                    {category.title}
+                  </h3>
+                  <p className="mt-2 leading-relaxed text-text-muted">
+                    {category.description}
+                  </p>
 
-                {/* Hover indicator */}
-                <div className="mt-5 flex items-center gap-1 text-sm font-semibold text-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <span>View catalog</span>
-                  <svg
-                    className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
+                  {/* Hover indicator */}
+                  <div className="mt-4 flex items-center gap-1 text-sm font-semibold text-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <span>View catalog</span>
+                    <svg
+                      className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </article>
             );
